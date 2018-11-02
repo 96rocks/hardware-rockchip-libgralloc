@@ -1937,7 +1937,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
 		}
 
 #if RK_DRM_GRALLOC
-		AINF("Got handle %d for fd %d\n", gem_handle, handle->prime_fd);
+		D("Got handle %d for fd %d", gem_handle, handle->prime_fd);
 #else
                 ALOGV("Got handle %d for fd %d\n", gem_handle, handle->prime_fd);
 #endif
@@ -1976,7 +1976,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
 		ret = drmPrimeHandleToFD(info->fd, gem_handle, 0,
 			&handle->prime_fd);
 #if RK_DRM_GRALLOC
-                AINF("Got fd %d for handle %d\n", handle->prime_fd, gem_handle);
+                D("Got fd %d for handle %d", handle->prime_fd, gem_handle);
 #else
 		ALOGV("Got fd %d for handle %d\n", handle->prime_fd, gem_handle);
 #endif
@@ -2151,10 +2151,10 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
         handle->name = 0;
 	buf->base.handle = handle;
 
-        AINF("leave, w : %d, h : %d, format : 0x%x,internal_format : 0x%" PRIx64 ", usage : 0x%x. size=%d,pixel_stride=%d,byte_stride=%d",
+        D("leave, w : %d, h : %d, format : 0x%x,internal_format : 0x%" PRIx64 ", usage : 0x%x. size=%d,pixel_stride=%d,byte_stride=%d",
                 handle->width, handle->height, handle->format,internal_format, handle->usage, handle->size,
                 pixel_stride,byte_stride);
-        AINF("leave: prime_fd=%d,share_attr_fd=%d",handle->prime_fd,handle->share_attr_fd);
+        D("leave: prime_fd=%d,share_attr_fd=%d",handle->prime_fd,handle->share_attr_fd);
 	return &buf->base;
 
 err_unref:
