@@ -1822,7 +1822,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
                 AERR("err.");
                 return NULL;
             }
-            AINF("for nv12, w : %d, h : %d, pixel_stride : %d, byte_stride : %d, size : %zu; internalHeight : %d.",
+            ADBG("for nv12, w : %d, h : %d, pixel_stride : %d, byte_stride : %d, size : %zu; internalHeight : %d.",
                     w,
                     h,
                     pixel_stride,
@@ -1838,7 +1838,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
                 return NULL;
             }
 
-            AINF("for nv12_10, w : %d, h : %d, pixel_stride : %d, byte_stride : %d, size : %zu; internalHeight : %d.",
+            ADBG("for nv12_10, w : %d, h : %d, pixel_stride : %d, byte_stride : %d, size : %zu; internalHeight : %d.",
                     w,
                     h,
                     pixel_stride,
@@ -1937,7 +1937,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
 		}
 
 #if RK_DRM_GRALLOC
-		D("Got handle %d for fd %d", gem_handle, handle->prime_fd);
+		ADBG("Got handle %d for fd %d", gem_handle, handle->prime_fd);
 #else
                 ALOGV("Got handle %d for fd %d\n", gem_handle, handle->prime_fd);
 #endif
@@ -1976,7 +1976,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
 		ret = drmPrimeHandleToFD(info->fd, gem_handle, 0,
 			&handle->prime_fd);
 #if RK_DRM_GRALLOC
-                D("Got fd %d for handle %d", handle->prime_fd, gem_handle);
+                ADBG("Got fd %d for handle %d", handle->prime_fd, gem_handle);
 #else
 		ALOGV("Got fd %d for handle %d\n", handle->prime_fd, gem_handle);
 #endif
@@ -2014,7 +2014,7 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
         {
             if ( addr != NULL )
             {
-                D("to init afbc_buffer, addr : %p", addr);
+                ADBG("to init afbc_buffer, addr : %p", addr);
                 init_afbc((uint8_t*)addr, internal_format, w, h);
             }
             else
@@ -2151,10 +2151,10 @@ struct gralloc_drm_bo_t *drm_gem_rockchip_alloc(
         handle->name = 0;
 	buf->base.handle = handle;
 
-        D("leave, w : %d, h : %d, format : 0x%x,internal_format : 0x%" PRIx64 ", usage : 0x%x. size=%d,pixel_stride=%d,byte_stride=%d",
+        ADBG("leave, w : %d, h : %d, format : 0x%x,internal_format : 0x%" PRIx64 ", usage : 0x%x. size=%d,pixel_stride=%d,byte_stride=%d",
                 handle->width, handle->height, handle->format,internal_format, handle->usage, handle->size,
                 pixel_stride,byte_stride);
-        D("leave: prime_fd=%d,share_attr_fd=%d",handle->prime_fd,handle->share_attr_fd);
+        ADBG("leave: prime_fd=%d,share_attr_fd=%d",handle->prime_fd,handle->share_attr_fd);
 	return &buf->base;
 
 err_unref:
