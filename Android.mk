@@ -136,7 +136,7 @@ ifeq ($(strip $(TARGET_BOARD_PLATFORM_PRODUCT)),box)
 USE_AFBC_LAYER = 0
 endif
 endif
-
+USE_AFBC_LAYER = 0
 # enable AFBC by default
 MALI_AFBC_GRALLOC := 1
 
